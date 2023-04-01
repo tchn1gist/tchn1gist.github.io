@@ -19,11 +19,23 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script src="https://unpkg.com/@themesberg/flowbite@1.1.1/dist/flowbite.bundle.js"></script>
+        <script>
+          
+        </script>
         <style>
           @media screen and (max-height: 500px) {
             .smart_img {
               display: none;
             }
+          }
+
+          html {
+            scroll-behavior: smooth;
+          }
+
+          .content {
+            padding-top: 64px;
+            margin-top: -64px;
           }
         </style>
     </head>
@@ -86,33 +98,58 @@
                 <span class="sr-only">Close sidebar</span>
               </button>
             </div>
-            <nav class="flex flex-col flex-1 w-64 p-4 mt-4">
+            <nav class="flex flex-col flex-1 w-64 p-4">
 
 
               <br>
               
-              <a href="index.html" class="flex items-center space-x-2">
+              <a href="index.html" class="flex items-center space-x-2 font-bold">
 
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" height="20px" weight="20px"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/></svg>
 
                 <span>ホーム</span>
               </a>
               <br>
-              <a href="class.html" class="flex items-center space-x-2">
+              <a href="#shout" @click="isSidebarOpen = false" class="flex items-center space-x-2 px-4 text-sm">
+                <span>Shoutについて</span>
+              </a>
+              <br>
+              <a href="#date" @click="isSidebarOpen = false" class="flex items-center space-x-2 px-4 text-sm">
+                <span>開催日</span>
+              </a>
+              <br>
+              <a href="#panf" @click="isSidebarOpen = false" class="flex items-center space-x-2 px-4 text-sm">
+                <span>デジタルパンフ</span>
+              </a>
+              <br>
+              <a href="#vote" @click="isSidebarOpen = false" class="flex items-center space-x-2 px-4 text-sm">
+                <span>投票企画について</span>
+              </a>
+              <br>
+              <a href="#virus" @click="isSidebarOpen = false" class="flex items-center space-x-2 px-4 text-sm">
+                <span>感染対策について</span>
+              </a>
+              <br>
+              <a href="#way" @click="isSidebarOpen = false" class="flex items-center space-x-2 px-4 text-sm">
+                <span>ご来校の方へ</span>
+              </a>
+              <br>
+
+              <a href="class.html" class="flex items-center space-x-2 font-bold">
 
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" height="20px" weight="20px"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M160 64c0-35.3 28.7-64 64-64H576c35.3 0 64 28.7 64 64V352c0 35.3-28.7 64-64 64H336.8c-11.8-25.5-29.9-47.5-52.4-64H384V320c0-17.7 14.3-32 32-32h64c17.7 0 32 14.3 32 32v32h64V64L224 64v49.1C205.2 102.2 183.3 96 160 96V64zm0 64a96 96 0 1 1 0 192 96 96 0 1 1 0-192zM133.3 352h53.3C260.3 352 320 411.7 320 485.3c0 14.7-11.9 26.7-26.7 26.7H26.7C11.9 512 0 500.1 0 485.3C0 411.7 59.7 352 133.3 352z"/></svg>
 
                 <span>学級展示</span>
               </a>
               <br>
-              <a href="club.html" class="flex items-center space-x-2">
+              <a href="club.html" class="flex items-center space-x-2 font-bold">
 
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" height="20px" weight="20px"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M512 256c0 .9 0 1.8 0 2.7c-.4 36.5-33.6 61.3-70.1 61.3H344c-26.5 0-48 21.5-48 48c0 3.4 .4 6.7 1 9.9c2.1 10.2 6.5 20 10.8 29.9c6.1 13.8 12.1 27.5 12.1 42c0 31.8-21.6 60.7-53.4 62c-3.5 .1-7 .2-10.6 .2C114.6 512 0 397.4 0 256S114.6 0 256 0S512 114.6 512 256zM128 288a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm0-96a32 32 0 1 0 0-64 32 32 0 1 0 0 64zM288 96a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm96 96a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"/></svg>
 
                 <span>部活動展示</span>
               </a>
               <br>
-              <a href="blog.html" class="flex items-center space-x-2">
+              <a href="blog.html" class="flex items-center space-x-2 font-bold">
 
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" height="20px" weight="20px"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/></svg>
 
@@ -127,10 +164,6 @@
               </a>
             
 
-              <a href="#" class="flex items-center space-x-2 text-xs">
-                <span><img src="imgs/web_logo_whitet.png" width="120px;" style="smart_img"></span>
-              </a>
-
             </nav>
             <div class="flex-shrink-0 p-4">
               <button class="flex items-center space-x-2">
@@ -141,10 +174,10 @@
         </div>
         <main class="flex flex-col items-center justify-center flex-1">
           <!-- Page content -->
-          <div style="box-shadow: 2px 2px 4px gray;">
-            <button @click="isSidebarOpen = true" class="fixed p-2 text-white bg-black rounded-lg top-5 left-5 shadow-2xl ..." style="z-index: 2; box-shadow: 2px 2px 4px;">
-              <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          <div style="">
+            <button @click="isSidebarOpen = true" class="fixed p-2 text-white rounded-lg top-3 left-3" style="z-index: 2; ">
+              <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 24 24" stroke="#000">
+                <path stroke-linecap="round" stroke-width="3" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
               </svg>
               <span class="sr-only">Open menu</span>
             </button>
@@ -203,10 +236,10 @@
             </div>
           </header>
           <section class="text-gray-600 body-font relative bg-gray-100">
-            <p class="text-2xl text-gray-900 dark:text-white px-8 pt-10 pb-5 font-bold animate_animated animate__fadeInLeft bg-gradient-to-r from-green-100 to-blue-200 ..." style="content: heading;">今年の栄東祭テーマは「Shout」です</p>
+            <p class="text-2xl text-gray-500 dark:text-white px-8 pt-10 pb-5 font-bold animate_animated animate__fadeInLeft bg-gradient-to-r from-green-100 to-blue-200 ... " style="content: heading;" id="shout">今年の栄東祭テーマは「Shout」です</p>
           </section>
           <section class="text-gray-600 body-font relative">
-            <p class="text-2xl text-gray-900 dark:text-white px-8 pt-10 font-bold " style="content: heading;">開催日程が決定しました！</p>
+            <p class="text-2xl text-gray-500 dark:text-white px-8 pt-10 font-bold " style="content: heading;" id="date">開催日程が決定しました！</p>
             <div class="container px-5 py-12 mx-auto flex sm:flex-nowrap flex-wrap">
               
               <div class="lg:w-3/5 md:w-1/2 flex justify-start relative">
@@ -222,17 +255,17 @@
             </div>
           </section>
           <section class="text-gray-600 body-font relative bg-gray-100">
-            <p class="text-4xl text-gray-900 dark:text-white px-8 pt-10 pb-5 font-bold" style="content: heading;">デジタルパンフ</p>
+            <p class="text-4xl text-gray-500 dark:text-white px-8 pt-10 pb-5 font-bold" style="content: heading;" id="panf">デジタルパンフ</p>
           </section>
           <section class="text-gray-600 body-font relative bg-gradient-to-r from-purple-200 via-pink-200 to-red-300 ...">
-            <p class="text-3xl text-gray-900 dark:text-white px-8 pt-10 pb-5 font-bold" style="content: heading;">栄東祭・投票企画</p>
+            <p class="text-3xl text-gray-500 dark:text-white px-8 pt-10 pb-5 font-bold" style="content: heading;" id="vote">栄東祭・投票企画</p>
           </section>
           <section class="text-gray-600 body-font relative bg-gray-100">
-            <p class="text-4xl text-gray-900 dark:text-white px-8 pt-10 pb-5 font-bold" style="content: heading;">感染対策について</p>
+            <p class="text-4xl text-gray-500 dark:text-white px-8 pt-10 pb-5 font-bold" style="content: heading;" id="virus">感染対策について</p>
 
           </section>
           <section class="text-gray-600 body-font relative">
-            <p class="text-4xl text-gray-900 dark:text-white px-8 pt-10 font-bold" style="content: heading;">ご来校の方法</p>
+            <p class="text-4xl text-gray-500 dark:text-white px-8 pt-10 font-bold" style="content: heading;" id="way">ご来校の方法</p>
             <div class="container px-5 py-12 mx-auto flex sm:flex-nowrap flex-wrap">
               
               <div class="lg:w-2/3 md:w-1/2 bg-gray-300 rounded-lg overflow-hidden sm:mr-10 p-10 flex items-end justify-start relative">
@@ -293,26 +326,26 @@
                   <nav class="flex flex-col gap-4">
 
                     <div>
-                      <a href="#" class="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600">「Shout」について</a>
+                      <a href="index.html#shout" class="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600">「Shout」について</a>
                     </div>
                     <div>
-                      <a href="#" class="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600">開催日</a>
-                    </div>
-          
-                    <div>
-                      <a href="#" class="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600">デジタルパンフ</a>
+                      <a href="index.html#date" class="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600">開催日</a>
                     </div>
           
                     <div>
-                      <a href="#" class="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600">投票企画について</a>
+                      <a href="index.html#panf" class="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600">デジタルパンフ</a>
+                    </div>
+          
+                    <div>
+                      <a href="index.html#vote" class="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600">投票企画について</a>
                     </div>
 
                     <div>
-                        <a href="#" class="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600">感染対策について</a>
+                        <a href="index.html#virus" class="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600">感染対策について</a>
                     </div>
 
                     <div>
-                        <a href="#" class="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600">ご来校の方へ</a>
+                        <a href="index.html#way" class="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600">ご来校の方へ</a>
                     </div>
 
                   </nav>
@@ -400,7 +433,8 @@
 
               </div>
               <div class="py-8 text-center text-sm text-gray-400" >Webサイト制作 '23栄東祭 文化祭実行委員会</div>
-              <a target="_blank" href="https://www.sakaehigashi.ed.jp"><div class="border-t border-gray-800 py-8 text-center text-sm text-gray-400" >© 2023 - Sakaehigashi Junior / Senior High School All Rights Reserved.</div></a>
+              <a target="_blank" href="https://www.sakaehigashi.ed.jp"><div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-400" >© 2023 - Sakaehigashi Junior / Senior High School</div></a>
+              <a target="_blank"><div class="text-center text-sm text-gray-400 pb-8" >© '23栄東祭 文化祭実行委員会</div></a>
             </footer>
           </div>
   
