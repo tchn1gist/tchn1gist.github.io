@@ -37,10 +37,33 @@
       .content {
         padding-top: 64px;
         margin-top: -64px;
-      }       
+      }
+      		/* ポップアップウィンドウのスタイル */
+		.popup {
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			padding: 20px;
+			background-color: #fff;
+			box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+			z-index: 9999;
+		}
+
+		/* 背景のスタイル */
+		.popup-overlay {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0,0,0,0.5);
+			z-index: 9998;
+			display: none;
+		}     
     </style>
   </head>
-  <body>
+  <body style="padding-top: 4rem;">
     <div x-data="setup()" x-init="$refs.loading.classList.add('hidden');">
       <div>
         <!-- Loading screen -->
@@ -74,29 +97,12 @@
                 </svg>
                 <span>ホーム</span>
               </a>
-              <a href="#shout" @click="isSidebarOpen = false" class="flex items-center space-x-2 px-4 text-sm py-2 pt-4 font-base">
-                  <span>→ Shoutについて</span>
-              </a>
-              <a href="#date" @click="isSidebarOpen = false" class="flex items-center space-x-2 px-4 text-sm py-2 font-base">
-                  <span>→ 開催日</span>
-              </a>
-              <a href="#panf" @click="isSidebarOpen = false" class="flex items-center space-x-2 px-4 text-sm py-2 font-base">
-                  <span>→ デジタルパンフ</span>
-              </a>
-              <a href="#vote" @click="isSidebarOpen = false" class="flex items-center space-x-2 px-4 text-sm py-2 font-base">
-                  <span>→ 投票企画について</span>
-              </a>
-              <a href="#virus" @click="isSidebarOpen = false" class="flex items-center space-x-2 px-4 text-sm py-2 font-base">
-                  <span>→ 感染対策について</span>
-              </a>
-              <a href="#way" @click="isSidebarOpen = false" class="flex items-center space-x-2 px-4 text-sm py-2 pb-4 font-base">
-                  <span>→ ご来校の方へ</span>
-              </a>
+
               <a href="class.html" class="flex items-center space-x-2 font-bold">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" height="20px" weight="20px"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                   <path d="M160 64c0-35.3 28.7-64 64-64H576c35.3 0 64 28.7 64 64V352c0 35.3-28.7 64-64 64H336.8c-11.8-25.5-29.9-47.5-52.4-64H384V320c0-17.7 14.3-32 32-32h64c17.7 0 32 14.3 32 32v32h64V64L224 64v49.1C205.2 102.2 183.3 96 160 96V64zm0 64a96 96 0 1 1 0 192 96 96 0 1 1 0-192zM133.3 352h53.3C260.3 352 320 411.7 320 485.3c0 14.7-11.9 26.7-26.7 26.7H26.7C11.9 512 0 500.1 0 485.3C0 411.7 59.7 352 133.3 352z"/>
                 </svg>
-                <span>学級展示</span>
+                <span>学級・団体展示</span>
               </a>
               <br>
               <a href="club.html" class="flex items-center space-x-2 font-bold">
@@ -106,11 +112,11 @@
                 <span>部活動展示</span>
               </a>
               <br>
-              <a href="blog.html" class="flex items-center space-x-2 font-bold">
+              <a href="stage.html" class="flex items-center space-x-2 font-bold">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" height="20px" weight="20px"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                   <path d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/>
                 </svg>
-                <span>準備ブログ</span>
+                <span>ステージ企画</span>
               </a>
               <br>
               <a href="qa.html" class="flex items-center space-x-2">
@@ -145,10 +151,10 @@
                 <img src="imgs/web_logo_white.png" class="w-0">
               </div>
             <div class="hidden sm:flex sm:items-center">
-                <a href="index.html#" class="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-10 ml-20 underline decoration-indigo-500 ...">ホーム</a>
-                <a href="class.html" class="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-10">学級展示</a>
+                <a href="index.html#" class="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-10 ml-20 ">ホーム</a>
+                <a href="class.html" class="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-10 underline decoration-indigo-500 ...">学級・団体展示</a>
                 <a href="club.html" class="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-10">部活動展示</a>
-                <a href="blog.html" class="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-10">準備ブログ</a>
+                <a href="stage.html" class="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-10">ステージ企画</a>
                 <a href="qa.html" class="text-gray-800 text-sm font-semibold hover:text-purple-600">Q&A</a>
               </div>
               <a href="index.html#">
@@ -168,6 +174,70 @@
                 紹介文
               </p>
             </div>
+            <!-- ボタン -->
+            <!--onclick="openPopup()"-->
+            <div class="flex justify-center" onclick="openPopup1()">
+                <button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Alternative</button>
+            </div>
+            <!-- ポップアップウィンドウ -->
+            <div id="popup1" class="popup" style="display: none;">
+                <h2>ポップアップウィンドウのタイトル</h2>
+                <p>ポップアップウィンドウの内容</p>
+                <!-- Modal header -->
+                <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                        Static modal
+                    </h3>
+                    <button onclick="closePopup1()" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="staticModal">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <div class="p-6 space-y-6">
+                    <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                        With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
+                    </p>
+                    <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                        The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
+                    </p>
+                </div>
+                <!-- Modal footer -->
+                <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+                    <button data-modal-hide="staticModal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">I accept</button>
+                    <button data-modal-hide="staticModal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Decline</button>
+                </div>
+            </div>
+
+            <!-- 背景 -->
+            <div id="popup-overlay" class="popup-overlay"></div>
+
+            <script>
+                function openPopup1() {
+                    document.getElementById("popup1").style.display = "block";
+                    document.getElementById("popup-overlay").style.display = "block";
+                }
+
+                function closePopup1() {
+                    document.getElementById("popup1").style.display = "none";
+                    document.getElementById("popup-overlay").style.display = "none";
+                }
+            </script>
+            <!-- 背景 -->
+            <div id="popup-overlay" class="popup-overlay"></div>
+
+            
+
+            <script>
+                function openPopup() {
+                    document.getElementById("popup").style.display = "block";
+                    document.getElementById("popup-overlay").style.display = "block";
+                }
+
+                function closePopup() {
+                    document.getElementById("popup").style.display = "none";
+                    document.getElementById("popup-overlay").style.display = "none";
+                }
+            </script>
             <div class="px-6 pt-4 pb-2">
               <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#タグ1</span>
               <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#タグ2</span>
@@ -189,132 +259,5 @@
             </div>
         </div>        
     </div>
-    
-      
-    <!--footer - start-->
-    <div class="bg-gray-900">
-      <footer class="mx-auto max-w-screen-2xl px-4 md:px-8">
-        <div class="mb-16 grid grid-cols-2 gap-12 pt-10 md:grid-cols-4 lg:grid-cols-6 lg:gap-8 lg:pt-12">
-          <div class="col-span-full lg:col-span-2">
-            <!-- logo - start -->
-            <div class="mb-4 lg:-mt-2">
-                <a href="#" class="inline-flex items-center gap-2 text-xl font-bold text-gray-100 md:text-2xl " aria-label="logo">
-                  <img src="imgs/web_logo_white.png" width="90px;" height="30px;">
-                </a>
-            </div>
-            <!-- logo - end -->
-            <p class="mb-6 text-gray-400 sm:pr-8">'23栄東祭「Shout」（シャウト）特設ページ</p>
-            <!-- social - end -->
-            <div class="mb-4 font-bold uppercase tracking-widest text-gray-100 pt-5 hover:text-indigo-500 active:text-indigo-600">
-              <a href="qa.html">栄東祭Q&A</a>
-            </div>
-          </div>         
-          <!-- nav - start -->
-          <div>
-            <div class="mb-4 font-bold uppercase tracking-widest text-gray-100 hover:text-indigo-500 active:text-indigo-600">
-              <a href="index.html">ホーム</a>
-            </div>
-            <nav class="flex flex-col gap-4">
-              <div>
-                <a href="index.html#shout" class="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600">「Shout」について</a>
-              </div>
-              <div>
-                <a href="index.html#date" class="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600">開催日</a>
-              </div>
-              <div>
-                <a href="index.html#panf" class="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600">デジタルパンフ</a>
-              </div>
-              <div>
-                <a href="index.html#vote" class="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600">投票企画について</a>
-              </div>
-              <div>
-                <a href="index.html#virus" class="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600">感染対策について</a>
-              </div>
-              <div>
-                <a href="index.html#way" class="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600">ご来校の方へ</a>
-              </div>
-            </nav>
-          </div>
-          <!-- nav - end -->
-          <!-- nav - start -->
-          <div>
-            <div class="mb-4 font-bold uppercase tracking-widest text-gray-100 hover:text-indigo-500 active:text-indigo-600">
-              <a href="class.html">学級展示</a>
-            </div>
-            <nav class="flex flex-col gap-4">
-              <div>
-                <a href="class.html#crowding" class="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600">混雑度表示システムについて</a>
-              </div>
-              <div>
-                <a href="class.html#1-1to8" class="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600">高1・1-8組</a>
-              </div>         
-              <div>
-                <a href="class.html#1-9to13" class="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600">高1・9-13組</a>
-              </div>         
-              <div>
-                <a href="class.html#2-1to9" class="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600">高2・1-9組</a>
-              </div>          
-              <div>
-                <a href="class.html#2-10to14" class="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600">高2・10-14組</a>
-              </div>
-            </nav>
-          </div>
-          <!-- nav - end -->
-          <!-- nav - start -->
-          <div>
-            <div class="mb-4 font-bold uppercase tracking-widest text-gray-100 hover:text-indigo-500 active:text-indigo-600">
-              <a href="club.html">部活動展示</a>
-            </div>
-            <nav class="flex flex-col gap-4">
-              <div>
-                <a href="club.html#crowding" class="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600">混雑度表示システムについて</a>
-              </div>
-              <div>
-                <a href="club.html#atos" class="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600">あ - さ行</a>
-              </div>
-              <div>
-                <a href="club.html#ttoh" class="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600">た - は行</a>
-              </div>
-              <div>
-                <a href="club.html#mtow" class="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600">ま - わ行</a>
-              </div>
-            </nav>
-          </div>
-          <!-- nav - end -->
-          <!-- nav - start -->
-          <div>
-            <div class="mb-4 font-bold uppercase tracking-widest text-gray-100 hover:text-indigo-500 active:text-indigo-600">
-              <a href="blog.html">準備ブログ</a>
-            </div>
-            <nav class="flex flex-col gap-4">
-              <div>
-                <a href="blog.html#soumu" class="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600">総務部から</a>
-              </div>           
-              <div>
-                <a href="blog.html#kikaku" class="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600">企画部から</a>
-              </div>           
-              <div>
-                <a href="blog.html#soushoku" class="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600">装飾部から</a>
-              </div>           
-              <div>
-                <a href="blog.html#gijutu" class="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600">技術部から</a>
-              </div>
-            </nav>
-          </div>
-          <!-- nav - end -->
-        </div>
-        <div class="py-8 text-center text-sm text-gray-400" >Webサイト制作 '23栄東祭 文化祭実行委員会</div>
-        <a target="_blank" href="https://www.sakaehigashi.ed.jp">
-          <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-400" >© 2023 - Sakaehigashi Junior / Senior High School</div>
-        </a>
-        <a>
-          <div class="text-center text-sm text-gray-400 pb-8" >© '23栄東祭 文化祭実行委員会</div>
-        </a>
-      </footer>
-    </div>
-    <a href="#" class="shadow-xl" style="z-index: 99;">
-      <button class="fixed bottom-4 right-4 bg-gray-500 hover:bg-gray-700 text-white py-2 px-4 rounded-full">↑</button>
-    </a>
-
   </body>
 </html>
